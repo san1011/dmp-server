@@ -1,0 +1,21 @@
+{
+  "name": "dmp_rest_api",
+  "version": "1.0.0",
+  "description": "dmp_restful api",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "sanchae",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "fcm-node": "^1.2.1",
+    "jquery": "^3.3.1",
+    "jsdom": "^11.6.1",
+    "mysql": "^2.15.0",
+    "sweetalert": "^2.1.0"
+  }
+}
