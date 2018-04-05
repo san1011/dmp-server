@@ -32,8 +32,6 @@ handleDisconnect();
 var url = require('url')
 var app = express();
 
-// configuration --------------------------------------------------------
-
 app.set('port', process.env.PORT || 1338);
 
 app.set('views', __dirname + '/views');
