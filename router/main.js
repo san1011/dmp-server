@@ -6,33 +6,43 @@ module.exports = function (app,connection, url){
         res.render('notice');
     })
 
-    app.get(headUrl+'/plan', function(req, res){
-        var sql = 'SELECT * FROM daily_plan';
-        var mRows;
-        connection.query(sql, function(err, rows){            
-            if(err){
-                console.log(err);
-                res.status(500).send('Internal Server Error');
-            }else{
-                res.send(rows);
-            }
-        });
-    });
+//    app.get(headUrl+'/plan', function(req, res){
+//        var sql = 'SELECT * FROM daily_plan';
+//        var mRows;
+//        connection.query(sql, function(err, rows){            
+//            if(err){
+//                console.log(err);
+//                res.status(500).send('Internal Server Error');
+//            }else{
+//                res.send(rows);
+//            }
+//        });
+//    });
 
-    app.get(headUrl+'/plan/:id/:date', function(req, res){
-        var date = req.params.date;
-        var id = req.params.id;
+	app.get(headUrl+'/plan', function(req, res){
+		var date = req.query.date;
+		var id = req.query.id;
 
-        var sql = 'SELECT * FROM daily_plan WHERE id=\''+id+'\' and date=\''+date+'\'';
-        connection.query(sql, function(err, rows){
-            if(err){
-                console.log(err);
-                res.status(500).send('Internal Server Error');
-            }else{
-                res.send(rows);
-            }
-        });
-    });
+		if(date ==null){
+			var sql = 'SELECT * FROM daily_plan';
+			connection.query(sql, function(err, rows){
+				if(err){
+					res.send(JSON.stringify({"status":01, "error":err, "response":null}));
+				}else{
+					res.send(JSON.stringify({"status":00, "error":null, "response":rows}));
+				}
+			});
+		}else{
+			var sql = 'SELECT * FROM daily_plan WHERE id=\''+id+'\' and date=\''+date+'\'';
+			connection.query(sql, function(err, rows){
+				if(err){
+					res.send(JSON.stringify({"status":01, "error":err, "response":null}));
+				}else{
+					res.send(JSON.stringify({"status":00, "error":null, "response":rows}));
+				}
+			});
+		}
+	});
 
     app.post(headUrl+'/plan', function(req, res){     
         var sql = 'SELECT * FROM daily_plan';
