@@ -1,8 +1,8 @@
 // config/database.js
 module.exports = {
-    host     : '202.68.225.85',
+    host     : '52.79.54.80',
     user     : 'root',
-    password : 'spcc123!',
+    password : '1011',
     port     : 3306,
     database : 'dmp_db'
   };
